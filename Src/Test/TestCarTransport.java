@@ -26,22 +26,22 @@ public class TestCarTransport {
         Truck.openRamp();
         Truck.loadCar(saab);
         Truck.loadCar(volvo);
-        assertEquals(2, Truck.nCarsLoaded, 1e-6);
+        assertEquals(2, Truck.getNumberCarsLoaded());
     }
 
     @Test
     public void testLoadCarWithClosedRamp(){
         Truck.closeRamp();
         Truck.loadCar(volvo);
-        assertEquals(0, Truck.nCarsLoaded, 1e-6);
+        assertEquals(0, Truck.getNumberCarsLoaded());
     }
 
     @Test
     public void testUnloadCar(){
         Truck.openRamp();
         Truck.loadCar(saab);
-        Truck.unloadCar(1);
-        assertEquals(0, Truck.nCarsLoaded, 1e-6);
+        Truck.unloadCars(1);
+        assertEquals(0, Truck.getNumberCarsLoaded());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TestCarTransport {
         for (int i = 0; i < 20; i++){
             Truck.loadCar(saab);
         }
-        assertEquals(8, Truck.nCarsLoaded, 1e-6);
+        assertEquals(8, Truck.getNumberCarsLoaded());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TestCarTransport {
         Truck.openRamp();
         Truck.loadCar(saab);
         Truck.loadCar(volvo);
-        Truck.unloadCar(2);
+        Truck.unloadCars(2);
 
         assertNotEquals(saab.x, volvo.x);
         assertEquals(saab.y, volvo.y, 1e-6);
